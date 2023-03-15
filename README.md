@@ -1,12 +1,18 @@
-# HttpRx
+# Reactive HTTP
 
 > HTTP [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch) over [RxJS Observables](https://rxjs.dev/guide/overview).
+
+## Install
+
+```
+npm install reactive-http
+```
 
 ## Usage
 
 ```ts
 // import { catchError, of } from 'rxjs'
-import { HttpRx } from 'httprx'
+import { HttpRx } from 'reactive-http'
 
 const http$ = new HttpRx()
 
