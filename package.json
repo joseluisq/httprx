@@ -6,25 +6,38 @@
         "name": "Jose Quintana",
         "url": "https://joseluisq.net"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joseluisq/reactive-http.git"
+    },
+    "bugs": {
+        "url": "https://github.com/joseluisq/reactive-http/issues"
+    },
     "keywords": [
-        "rxjs",
         "fetch",
         "http",
-        "client"
+        "request",
+        "Rx",
+        "RxJS",
+        "ReactiveX",
+        "client",
+        "xhr",
+        "ES2015"
     ],
-    "main": "index.js",
-    "typings": "index.d.ts",
+    "main": "./src/index.js",
+    "types": "./src/index.d.ts",
     "files": [
-        "index.js",
-        "index.d.ts",
+        "./src/*.js",
+        "./src/*.d.ts",
         "/*.min.js",
         "README.md",
         "LICENSE"
     ],
     "scripts": {
         "version": "npm run build",
-        "build": "rm -rf *.d.ts && rm -rf *.js && tsc --module commonjs --target es2016",
-        "start": "ts-node example/index.ts"
+        "clean": "rm -rf src/*.d.ts && rm -rf src/*.js && rm -rf examples/*.d.ts && rm -rf examples/*.js",
+        "build": "npm run clean && tsc --module commonjs --target es2016",
+        "start": "ts-node examples/index.ts"
     },
     "dependencies": {
         "rxjs": "^7"

@@ -1,23 +1,6 @@
-# Reactive HTTP
-
-> HTTP [`Fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/fetch) client over [RxJS `Observables`](https://rxjs.dev/guide/overview) inspired by [Angular `HttpClient`](https://angular.io/api/common/http/HttpClient).
-
-**Status:** Work in progress...
-
-## Install
-
-```sh
-npm install reactive-http
-# or
-yarn add reactive-http
-```
-
-## Usage
-
-```ts
 // import { catchError, of } from 'rxjs'
 import { Observable } from 'rxjs'
-import { Http, HttpHandler, HttpInterceptor } from 'reactive-http'
+import { Http, HttpHandler, HttpInterceptor } from '../src'
 
 class Interceptor1 implements HttpInterceptor {
     intercept(req: Request, next: HttpHandler): Observable<Response> {
@@ -57,4 +40,3 @@ ob.subscribe(resp => {
     console.log('name:', resp.name)
     console.log('description:', resp.description)
 })
-```
