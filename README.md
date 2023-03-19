@@ -40,11 +40,11 @@ interface Repository {
     html_url: string,
 }
 
-const http$ = new Http()
-http$.intercept(new Interceptor1())
-http$.intercept(new Interceptor2())
+const http = new Http()
+http.intercept(new Interceptor1())
+http.intercept(new Interceptor2())
 
-const ob = http$.get<Repository>('https://api.github.com/repos/static-web-server/static-web-server')
+const ob$ = http.get<Repository>('https://api.github.com/repos/joseluisq/reactive-http')
 // .pipe(
 //     catchError(err => {
 //         console.error(err)
@@ -52,7 +52,7 @@ const ob = http$.get<Repository>('https://api.github.com/repos/static-web-server
 //     })
 // )
 
-ob.subscribe(resp => {
+ob$.subscribe(resp => {
     console.log('id:', resp.id)
     console.log('name:', resp.name)
     console.log('description:', resp.description)

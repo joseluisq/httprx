@@ -1,10 +1,10 @@
-import { Observable, switchMap } from 'rxjs'
-import { fromFetch } from 'rxjs/fetch'
-import { HandlerInterceptors } from './handler'
+import { Observable } from 'rxjs'
+
+import { fetchFn, HandlerInterceptors } from './handler'
 import { HttpInterceptor } from './interceptor'
 import { defaults, HttpOptions } from './options'
 
-/** Fetch API over RxJS Observables. */
+/** HTTP `Fetch` API client over RxJS `Observables` inspired by Angular `HttpClient`. */
 export class Http {
     private readonly handler = new HandlerInterceptors()
 
@@ -90,26 +90,36 @@ export class Http {
     }
 
     private request(url: string | Request, opts: Required<HttpOptions<any>>) {
-        let req = typeof url === 'string' ? new Request(url) : url
-        const resp = this.handler.handle(req, (reqMut) => fromFetch(reqMut, opts))
-        switch (opts.observe) {
-            case 'body':
+        if (!opts.selector && opts.observe === 'body') {
+            opts.selector = (resp) => {
                 switch (opts.responseType) {
                     case 'arraybuffer':
-                        return resp.pipe(switchMap<Response, any>(res => res.arrayBuffer()))
+                        return resp.arrayBuffer()
                     case 'blob':
-                        return resp.pipe(switchMap<Response, any>(res => res.blob()))
+                        return resp.blob()
                     case 'text':
-                        return resp.pipe(switchMap<Response, any>(res => res.text()))
+                        return resp.text()
                     case 'json':
                     default:
-                        return resp.pipe(switchMap<Response, any>(res => res.json()))
+                        return resp.json()
+                    // return resp.pipe(
+                    //     switchMap<Response, any>(res => {
+                    //         if (res.ok) {
+                    //             return of(res)
+                    //         } else {
+                    //             return throwError(() => new Error(`Error ${res.status}`))
+                    //         }
+                    //     }))
                 }
+            }
+        }
+
+        const req = typeof url === 'string' ? new Request(url) : url
+        switch (opts.observe) {
+            case 'body':
             case 'response':
-                // The response stream was requested directly, so return it
-                return resp
+                return this.handler.handle(req, fetchFn(opts))
             default:
-                // Guard against new future observe types being added
                 throw new Error(`Unreachable: unhandled observe type ${opts.observe}}`)
         }
     }

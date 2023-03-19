@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs'
+
 import { HttpHandler } from './handler'
 
 export interface HttpInterceptor {
@@ -6,6 +7,8 @@ export interface HttpInterceptor {
 }
 
 export type InterceptorFn = (req: Request, next: HttpHandler) => Observable<Response>
+
+export const interceptorChainEndFn = (req: Request, finalHandlerFn: HttpHandler) => finalHandlerFn(req)
 
 export function chainFn(chainTailFn: InterceptorFn, interceptorFn: InterceptorFn): InterceptorFn {
     return (initialRequest, finalHandlerFn) =>

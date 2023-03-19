@@ -1,4 +1,5 @@
 export { Http } from './http'
 export { HttpHandler } from './handler'
 export { HttpInterceptor } from './interceptor'
+export { HttpRequestDeduplicator } from './deduplicator'
 export { HttpOptions } from './options'

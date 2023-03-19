@@ -1,33 +1,35 @@
-// import { catchError, of } from 'rxjs'
-import { Observable } from 'rxjs'
-import { Http, HttpHandler, HttpInterceptor } from '../src'
+import { Observable, catchError, of } from 'rxjs'
+import { Http, HttpHandler, HttpInterceptor, HttpRequestDeduplicator } from '../src'
 
-class Interceptor1 implements HttpInterceptor {
+class MyInterceptor implements HttpInterceptor {
     intercept(req: Request, next: HttpHandler): Observable<Response> {
-        console.log("first interceptor!")
+        console.log('my custom interceptor!')
         return next(req)
     }
 }
 
-class Interceptor2 implements HttpInterceptor {
-    intercept(req: Request, next: HttpHandler): Observable<Response> {
-        console.log("second interceptor!")
-        return next(req)
-    }
+interface Currency {
+    symbol: string
+    name: string
+    symbol_native: string
+    decimal_digits: number
+    rounding: number
+    iso_code: string
+    name_plural: string
 }
 
-interface Repository {
-    id: number,
-    name: string,
-    description: string,
-    html_url: string,
+interface CurrencyMap {
+    [key: string]: Currency,
 }
 
-const http$ = new Http()
-http$.intercept(new Interceptor1())
-http$.intercept(new Interceptor2())
+const http = new Http()
+http.intercept(new MyInterceptor())
+http.intercept(new HttpRequestDeduplicator())
 
-const ob = http$.get<Repository>('https://api.github.com/repos/static-web-server/static-web-server')
+const URL = 'https://raw.githubusercontent.com/joseluisq/json-datasets/master/json/currencies/currencies_symbols.json'
+const event1$ = http.get<CurrencyMap>(URL)
+const event2$ = http.get<CurrencyMap>(URL)
+const event3$ = http.get<CurrencyMap>(URL)
 // .pipe(
 //     catchError(err => {
 //         console.error(err)
@@ -35,8 +37,18 @@ const ob = http$.get<Repository>('https://api.github.com/repos/static-web-server
 //     })
 // )
 
-ob.subscribe(resp => {
-    console.log('id:', resp.id)
-    console.log('name:', resp.name)
-    console.log('description:', resp.description)
-})
+function display(subscriber: number, currency: Currency) {
+    console.log('==== Response for subscriber #' + subscriber)
+    console.log('symbol:', currency.symbol)
+    console.log('name:', currency.name)
+    console.log('symbol_native:', currency.symbol_native)
+    console.log('decimal_digits:', currency.decimal_digits)
+    console.log('rounding:', currency.rounding)
+    console.log('iso_code:', currency.iso_code)
+    console.log('name_plural:', currency.name_plural)
+}
+
+event1$.subscribe(currencyMap => display(1, currencyMap['EUR']))
+event2$.subscribe(currencyMap => display(2, currencyMap['USD']))
+event3$.subscribe(currencyMap => display(3, currencyMap['CNY']))
+
