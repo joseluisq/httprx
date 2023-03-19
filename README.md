@@ -7,9 +7,9 @@
 ## Install
 
 ```sh
-npm install reactive-http
+npm install rxjs@^7 reactive-http --save
 # or
-yarn add reactive-http
+yarn add rxjs@^7 reactive-http
 ```
 
 ## Usage

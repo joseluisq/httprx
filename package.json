@@ -40,9 +40,6 @@
         "start": "ts-node examples/index.ts",
         "start:web": "parcel examples/index.html"
     },
-    "dependencies": {
-        "rxjs": "^7"
-    },
     "peerDependencies": {
         "rxjs": "^7"
     },
@@ -50,6 +47,7 @@
         "@types/node": "^18.15.3",
         "@typescript/lib-dom": "npm:@types/web",
         "parcel-bundler": "^1.12.5",
+        "rxjs": "^7",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5"
     }
