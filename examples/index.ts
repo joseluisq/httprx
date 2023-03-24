@@ -1,8 +1,15 @@
 import { Observable, catchError, of } from 'rxjs'
-import { Http, HttpHandler, HttpInterceptor, HttpRequestDeduplicator } from '../src'
+import {
+    Http,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest,
+    HttpRequestDeduplicator,
+    HttpResponse,
+} from '../src'
 
 class MyInterceptor implements HttpInterceptor {
-    intercept(req: Request, next: HttpHandler): Observable<Response> {
+    intercept(req: HttpRequest, next: HttpHandler): Observable<HttpResponse> {
         console.log('my custom interceptor!')
         return next(req)
     }
@@ -18,15 +25,13 @@ interface Currency {
     name_plural: string
 }
 
-interface CurrencyMap {
-    [key: string]: Currency,
-}
+type CurrencyMap = Record<string, Currency>
 
 const http = new Http()
-http.intercept(new MyInterceptor())
-http.intercept(new HttpRequestDeduplicator())
+http.intercept([new MyInterceptor(), new HttpRequestDeduplicator()])
 
-const URL = 'https://raw.githubusercontent.com/joseluisq/json-datasets/master/json/currencies/currencies_symbols.json'
+const URL =
+    'https://raw.githubusercontent.com/joseluisq/json-datasets/master/json/currencies/currencies_symbols.json'
 const event1$ = http.get<CurrencyMap>(URL)
 const event2$ = http.get<CurrencyMap>(URL)
 const event3$ = http.get<CurrencyMap>(URL)
@@ -37,8 +42,8 @@ const event3$ = http.get<CurrencyMap>(URL)
 //     })
 // )
 
-function display(subscriber: number, currency: Currency) {
-    console.log('==== Response for subscriber #' + subscriber)
+function display(subscriber: number, currency: Currency): void {
+    console.log(`==== Response for subscriber #${subscriber}`)
     console.log('symbol:', currency.symbol)
     console.log('name:', currency.name)
     console.log('symbol_native:', currency.symbol_native)
@@ -48,7 +53,6 @@ function display(subscriber: number, currency: Currency) {
     console.log('name_plural:', currency.name_plural)
 }
 
-event1$.subscribe(currencyMap => display(1, currencyMap['EUR']))
-event2$.subscribe(currencyMap => display(2, currencyMap['USD']))
-event3$.subscribe(currencyMap => display(3, currencyMap['CNY']))
-
+event1$.subscribe((currencyMap) => display(1, currencyMap.EUR))
+event2$.subscribe((currencyMap) => display(2, currencyMap.USD))
+event3$.subscribe((currencyMap) => display(3, currencyMap.CNY))

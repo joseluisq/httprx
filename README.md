@@ -1,6 +1,6 @@
 # Reactive HTTP
 
-> HTTP [`Fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/fetch) client over [RxJS `Observables`](https://rxjs.dev/guide/overview) inspired by [Angular `HttpClient`](https://angular.io/api/common/http/HttpClient).
+> HTTP [`Fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client over [RxJS `Observables`](https://rxjs.dev/guide/overview) inspired by [Angular `HttpClient`](https://angular.io/api/common/http/HttpClient).
 
 **Status:** Work in progress...
 

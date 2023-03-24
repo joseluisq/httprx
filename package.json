@@ -1,6 +1,6 @@
 {
     "name": "reactive-http",
-    "version": "0.0.0",
+    "version": "0.0.4",
     "license": "MIT",
     "author": {
         "name": "Jose Quintana",
@@ -27,8 +27,8 @@
     "main": "./src/index.js",
     "types": "./src/index.d.ts",
     "files": [
-        "./src/*.js",
-        "./src/*.d.ts",
+        "./src/**/*.js",
+        "./src/**/*.d.ts",
         "/*.min.js",
         "README.md",
         "LICENSE"
@@ -38,15 +38,21 @@
         "clean": "rm -rf src/*.d.ts && rm -rf src/*.js && rm -rf examples/*.d.ts && rm -rf examples/*.js",
         "build": "npm run clean && tsc --module commonjs --target es2016",
         "start": "ts-node examples/index.ts",
-        "start:web": "parcel examples/index.html"
+        "start:web": "parcel examples/index.html",
+        "lint": "eslint --cache \"src/**/*.{js,jsx,ts,tsx}\"",
+        "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\""
     },
     "peerDependencies": {
         "rxjs": "^7"
     },
     "devDependencies": {
         "@types/node": "^18.15.3",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
         "@typescript/lib-dom": "npm:@types/web",
+        "eslint": "^8.36.0",
         "parcel-bundler": "^1.12.5",
+        "prettier": "^2.8.6",
         "rxjs": "^7",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5"
