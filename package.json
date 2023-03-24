@@ -34,13 +34,16 @@
         "LICENSE"
     ],
     "scripts": {
-        "version": "npm run build",
-        "clean": "rm -rf src/*.d.ts && rm -rf src/*.js && rm -rf examples/*.d.ts && rm -rf examples/*.js",
-        "build": "npm run clean && tsc --module commonjs --target es2016",
+        "version": "yarn build",
+        "clean": "find src examples | grep -E \".d.ts|.js\" | xargs rm -fr",
+        "build": "yarn clean && tsc --module commonjs --target es2016",
+        "test": "echo \"TODO\"",
         "start": "ts-node examples/index.ts",
         "start:web": "parcel examples/index.html",
-        "lint": "eslint --cache \"src/**/*.{js,jsx,ts,tsx}\"",
-        "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\""
+        "lint": "yarn clean && eslint --cache \"src/**/*.{js,jsx,ts,tsx}\"",
+        "lint:fix": "yarn clean && eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+        "docs": "typedoc --out docs src/index.ts",
+        "docs:temp": "typedoc --out /tmp/docs src/index.ts"
     },
     "peerDependencies": {
         "rxjs": "^7"
@@ -55,6 +58,7 @@
         "prettier": "^2.8.6",
         "rxjs": "^7",
         "ts-node": "^10.9.1",
+        "typedoc": "^0.23.28",
         "typescript": "^4.9.5"
     }
 }

@@ -1,8 +1,6 @@
-# Reactive HTTP
+# Reactive HTTP ![devel](https://github.com/joseluisq/reactive-http/workflows/devel/badge.svg?branch=master) [![npm](https://img.shields.io/npm/v/reactive-http.svg)](https://www.npmjs.com/package/reactive-http) [![npm](https://img.shields.io/npm/dt/reactive-http.svg)](https://www.npmjs.com/package/reactive-http) [![docs](https://img.shields.io/badge/docs-latest-green)](https://joseluisq.github.io/reactive-http/)
 
 > HTTP [`Fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client over [RxJS `Observables`](https://rxjs.dev/guide/overview) inspired by [Angular `HttpClient`](https://angular.io/api/common/http/HttpClient).
-
-**Status:** Work in progress...
 
 ## Install
 
@@ -58,3 +56,16 @@ ob$.subscribe(resp => {
     console.log('description:', resp.description)
 })
 ```
+
+## API
+
+See [reactive-http documentation](https://joseluisq.github.io/reactive-http/) page.
+
+## Contributions
+
+Feel free to send a [Pull request](https://github.com/joseluisq/reactive-http/pulls) or file an [issue](https://github.com/joseluisq/reactive-http/issues).
+
+## License
+MIT license
+
+© 2023-present [Jose Quintana](https://github.com/joseluisq)

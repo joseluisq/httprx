@@ -9,3 +9,4 @@ dist
 *cache
 *.lock
 *lock.json
+docs
