@@ -29,65 +29,9 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content getting-started">
+               <div class="content package-properties">
                    <div class="content-data">
 
-<h1 id="reactive-http-devel-npm-npm-docs">Reactive HTTP <img src="https://github.com/joseluisq/reactive-http/workflows/devel/badge.svg?branch=master" alt="devel" class="img-responsive"> <a href="https://www.npmjs.com/package/reactive-http"><img src="https://img.shields.io/npm/v/reactive-http.svg" alt="npm" class="img-responsive"></a> <a href="https://www.npmjs.com/package/reactive-http"><img src="https://img.shields.io/npm/dt/reactive-http.svg" alt="npm" class="img-responsive"></a> <a href="https://joseluisq.github.io/reactive-http/"><img src="https://img.shields.io/badge/docs-latest-green" alt="docs" class="img-responsive"></a></h1>
-<blockquote>
-<p>HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"><code>Fetch</code> API</a> client over <a href="https://rxjs.dev/guide/overview">RxJS <code>Observables</code></a> inspired by <a href="https://angular.io/api/common/http/HttpClient">Angular <code>HttpClient</code></a>.</p>
-</blockquote>
-<h2 id="install">Install</h2>
-<div><pre class="line-numbers"><code class="language-sh">npm install rxjs&#64;^7 reactive-http --save
-# or
-yarn add rxjs&#64;^7 reactive-http</code></pre></div><h2 id="usage">Usage</h2>
-<div><pre class="line-numbers"><code class="language-ts">// import { catchError, of } from &#39;rxjs&#39;
-import { Observable } from &#39;rxjs&#39;
-import { Http, HttpHandler, HttpInterceptor } from &#39;reactive-http&#39;
-
-class Interceptor1 implements HttpInterceptor {
-    intercept(req: Request, next: HttpHandler): Observable&lt;Response&gt; {
-        console.log(&quot;first interceptor!&quot;)
-        return next(req)
-    }
-}
-
-class Interceptor2 implements HttpInterceptor {
-    intercept(req: Request, next: HttpHandler): Observable&lt;Response&gt; {
-        console.log(&quot;second interceptor!&quot;)
-        return next(req)
-    }
-}
-
-interface Repository {
-    id: number,
-    name: string,
-    description: string,
-    html_url: string,
-}
-
-const http = new Http()
-http.intercept(new Interceptor1())
-http.intercept(new Interceptor2())
-
-const ob$ = http.get&lt;Repository&gt;(&#39;https://api.github.com/repos/joseluisq/reactive-http&#39;)
-// .pipe(
-//     catchError(err =&gt; {
-//         console.error(err)
-//         return of({ error: false, message: err.message })
-//     })
-// )
-
-ob$.subscribe(resp =&gt; {
-    console.log(&#39;id:&#39;, resp.id)
-    console.log(&#39;name:&#39;, resp.name)
-    console.log(&#39;description:&#39;, resp.description)
-})</code></pre></div><h2 id="api">API</h2>
-<p>See <a href="https://joseluisq.github.io/reactive-http/">reactive-http documentation</a> page.</p>
-<h2 id="contributions">Contributions</h2>
-<p>Feel free to send a <a href="https://github.com/joseluisq/reactive-http/pulls">Pull request</a> or file an <a href="https://github.com/joseluisq/reactive-http/issues">issue</a>.</p>
-<h2 id="license">License</h2>
-<p>MIT license</p>
-<p>© 2023-present <a href="https://github.com/joseluisq">Jose Quintana</a></p>
 
 
 
@@ -103,7 +47,23 @@ ob$.subscribe(resp =&gt; {
 
 
 
-
+    <ol class="breadcrumb">
+        <li>Properties</li>
+    </ol>
+    <ul class="properties-list">
+        <li>
+            <b>Version</b> : 0.0.4</li>
+        <li>
+            <b>Keywords</b> : fetch, http, request, Rx, RxJS, ReactiveX, client, xhr, ES2015</li>
+        <li>
+            <b>Bugs</b> : https://github.com/joseluisq/reactive-http/issues</li>
+        <li>
+            <b>License</b> : MIT</li>
+        <li>
+            <b>Repository</b> : https://github.com/joseluisq/reactive-http.git</li>
+        <li>
+            <b>Author</b> : Jose Quintana</li>
+    </ul>
 
 
 
@@ -134,8 +94,8 @@ ob$.subscribe(resp =&gt; {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
-            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'package-properties';
+            var COMPODOC_CURRENT_PAGE_URL = 'properties.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
