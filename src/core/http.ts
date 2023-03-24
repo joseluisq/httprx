@@ -7,9 +7,9 @@ import { Chain } from './chain'
 import { fetchFn } from './fetch'
 
 /**
- * HTTP {@linkcode https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API Fetch API} client
- * over {@linkcode https://rxjs.dev/guide/overview RxJS Observables}
- * inspired by {@linkcode https://angular.io/api/common/http/HttpClient Angular HttpClient}.
+ * HTTP {@link https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API Fetch API} client
+ * over {@link https://rxjs.dev/guide/overview RxJS Observables}
+ * inspired by {@link https://angular.io/api/common/http/HttpClient Angular HttpClient}.
  */
 export class Http {
     private readonly chain = new Chain()

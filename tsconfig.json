@@ -22,6 +22,7 @@
         "declaration": true,
         "sourceMap": false,
         "pretty": true,
+        "stripInternal": true,
         "moduleResolution": "Node",
         "lib": [
             "ES2017",

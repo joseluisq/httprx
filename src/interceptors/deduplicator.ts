@@ -9,6 +9,7 @@ import {
 import { HttpInterceptor } from '../core/interceptor'
 import { HttpHandler, HttpRequest, HttpResponse } from '../core/types'
 
+/** @internal */
 class RequestEventMap {
     private readonly events = new Map<string, Observable<HttpResponse>>()
 
@@ -29,6 +30,7 @@ class RequestEventMap {
     }
 }
 
+/** @internal */
 const events = new RequestEventMap()
 
 /**

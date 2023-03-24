@@ -13,6 +13,7 @@ export interface HttpInterceptor {
     intercept(req: HttpRequest, next: HttpHandler): Observable<HttpResponse>
 }
 
+/** @internal */
 export type InterceptorFn = (
     req: HttpRequest,
     next: HttpHandler

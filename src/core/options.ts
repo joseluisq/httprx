@@ -7,8 +7,10 @@ export type HttpOptions<T> = RequestInit & {
     selector?: (response: Response) => ObservableInput<T>
 }
 
+/** @internal */
 const DEFAULTS = { mode: 'cors', observe: 'body', responseType: 'json' }
 
+/** @internal */
 export const defaults = <T>(opts: HttpOptions<T> = {}, method: string) =>
     ({
         ...DEFAULTS,

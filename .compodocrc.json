@@ -1,0 +1,13 @@
+{
+    "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+    "tsconfig": "./tsconfig.lib.json",
+    "name": "Reactive HTTP",
+    "theme": "stripe",
+    "output": "./docs",
+    "hideGenerator": true,
+    "disablePrivate": true,
+    "disableSourceCode": false,
+    "disableInternal": true,
+    "disableProtected": true,
+    "disableCoverage": true
+}

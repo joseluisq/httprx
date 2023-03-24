@@ -3,7 +3,11 @@ import { fromFetch } from 'rxjs/fetch'
 import { HttpOptions } from './options'
 import { HttpHandler } from './types'
 
-/** `Fetch` API intended to perform a final HTTP request. */
+/**
+ * `Fetch` API intended to perform a final HTTP request.
+ *
+ * @internal
+ */
 export const fetchFn =
     <T>(opts: HttpOptions<T>): HttpHandler =>
         (reqMut) =>
